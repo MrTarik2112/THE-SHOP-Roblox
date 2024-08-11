@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ücretsiz Robux Satın Al</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Ücretsiz Robux Satın Al</h1>
+        <p>Ücretsiz Robux almak için aşağıdaki bilgileri doldurun:</p>
+        <input type="text" id="username" placeholder="Roblox Hesap Adınızı Girin">
+
+        <label for="robuxAmount">Robux Miktarı: <span id="robuxValue">100</span></label>
+        <input type="range" id="robuxAmount" min="100" max="10000" value="100" oninput="updateRobuxValue()">
+
+        <button class="primary-button" onclick="confirmPurchase()">Robux Satın Al</button>
+        <p class="message" id="message"></p>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <!-- Onay Modalı -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <p id="confirmMessage"></p>
+            <button class="primary-button" onclick="completePurchase()">Onayla</button>
+            <button class="secondary-button" onclick="closeModal()">İptal</button>
+        </div>
+    </div>
+
+    <script>
+        function updateRobuxValue() {
+            const robuxValue = document.getElementById("robuxAmount").value;
+            document.getElementById("robuxValue").textContent = robuxValue;
+        }
+
+        function confirmPurchase() {
+            const username = document.getElementById("username").value;
+            const robuxAmount = document.getElementById("robuxAmount").value;
+            const confirmMessage = document.getElementById("confirmMessage");
+
+            if (username === "") {
+                document.getElementById("message").textContent = "Lütfen önce Roblox hesap adınızı girin.";
+                return;
+            }
+
+            confirmMessage.textContent = `${username} hesabı için ${robuxAmount} Robux satın almak istediğinizden emin misiniz?`;
+            document.getElementById("confirmModal").style.display = "block";
+        }
+
+        function completePurchase() {
+            const username = document.getElementById("username").value;
+            const robuxAmount = document.getElementById("robuxAmount").value;
+            const message = document.getElementById("message");
+
+            message.textContent = `${username} için ${robuxAmount} Robux satın alma işleminiz gerçekleştiriliyor, lütfen bekleyin...`;
+            document.getElementById("confirmModal").style.display = "none";
+            
+            setTimeout(() => {
+                message.textContent = `Tebrikler, ${username}! ${robuxAmount} Robux satın alma işleminiz tamamlandı! (10 DK İçinde Hesabınıza Gelicektir)`;
+            }, 3000); // 3000 milisaniye = 3 saniye
+        }
+
+        function closeModal() {
+            document.getElementById("confirmModal").style.display = "none";
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle("dark-mode");
+            const themeToggle = document.querySelector(".theme-toggle");
+            if (body.classList.contains("dark-mode")) {
+                themeToggle.textContent = "☀️";
+            } else {
+                themeToggle.textContent = "🌙";
+            }
+        }
+    </script>
+</body>
+</html>
