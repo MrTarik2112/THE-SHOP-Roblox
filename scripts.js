@@ -4,6 +4,11 @@ function updateRobuxValue() {
     document.getElementById("robuxValue").textContent = robuxValue;
 }
 
+function showInformatin(){
+    informationMessage.textContent = `Bu site egelence amaclidir ve gercekten Robux vermez. (Dolandirildin)`;
+    document.getElementById("informationModal").style.display = "block";
+}
+
 // Satın alma işlemi için onaylama işlevi
 function confirmPurchase() {
     const username = document.getElementById("username").value;
@@ -26,7 +31,6 @@ function completePurchase() {
     const message = document.getElementById("message");
     const progressBarContainer = document.getElementById("progressBarContainer");
     const progressBar = document.getElementById("progressBar");
-    const alertBox = document.getElementById("alertBox");
     let width = 0;
 
     document.getElementById("confirmModal").style.display = "none";
@@ -39,14 +43,6 @@ function completePurchase() {
             message.textContent = `Tebrikler, ${username}! ${robuxAmount} Robux satın alma işleminiz tamamlandı!`;
             progressBarContainer.style.display = "none"; // İşlem tamamlandığında çubuğu gizle
             
-            // İşlem tamamlandığında uyarı kutusunu göster
-            alertBox.textContent = `Tebrikler ${username}! ${robuxAmount} Robux başarıyla satın alındı.`;
-            alertBox.style.display = "block";
-
-            // Uyarı kutusunu 5 saniye sonra gizle
-            setTimeout(() => {
-                alertBox.style.display = "none";
-            }, 5000);
         } else {
             width++;
             progressBar.style.width = width + '%';
@@ -57,6 +53,10 @@ function completePurchase() {
 // Onay modalını kapatma işlevi
 function closeModal() {
     document.getElementById("confirmModal").style.display = "none";
+}
+
+function closeModa2(){
+    document.getElementById("informationModal").style.display = "none";
 }
 
 // Tema değiştirme işlevi
