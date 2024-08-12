@@ -18,6 +18,11 @@
 
         <button class="primary-button" onclick="confirmPurchase()">Robux Satın Al</button>
         <p class="message" id="message"></p>
+
+        <!-- Bekleme Çubuğu -->
+        <div id="progressBarContainer">
+            <div id="progressBar"></div>
+        </div>
     </div>
 
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
@@ -36,53 +41,7 @@
         <img src="https://static.vecteezy.com/system/resources/previews/006/892/625/non_2x/discord-logo-icon-editorial-free-vector.jpg" alt="Discord" class="discord-logo">
     </a>
 
-    <script>
-        function updateRobuxValue() {
-            const robuxValue = document.getElementById("robuxAmount").value;
-            document.getElementById("robuxValue").textContent = robuxValue;
-        }
-
-        function confirmPurchase() {
-            const username = document.getElementById("username").value;
-            const robuxAmount = document.getElementById("robuxAmount").value;
-            const confirmMessage = document.getElementById("confirmMessage");
-
-            if (username === "") {
-                document.getElementById("message").textContent = "Lütfen önce Roblox hesap adınızı girin.";
-                return;
-            }
-
-            confirmMessage.textContent = `${username} hesabı için ${robuxAmount} Robux satın almak istediğinizden emin misiniz?`;
-            document.getElementById("confirmModal").style.display = "block";
-        }
-
-        function completePurchase() {
-            const username = document.getElementById("username").value;
-            const robuxAmount = document.getElementById("robuxAmount").value;
-            const message = document.getElementById("message");
-
-            message.textContent = `${username} için ${robuxAmount} Robux satın alma işleminiz gerçekleştiriliyor, lütfen bekleyin...`;
-            document.getElementById("confirmModal").style.display = "none";
-            
-            setTimeout(() => {
-                message.textContent = `Tebrikler, ${username}! ${robuxAmount} Robux satın alma işleminiz tamamlandı!`;
-            }, 3000); // 3000 milisaniye = 3 saniye
-        }
-
-        function closeModal() {
-            document.getElementById("confirmModal").style.display = "none";
-        }
-
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle("dark-mode");
-            const themeToggle = document.querySelector(".theme-toggle");
-            if (body.classList.contains("dark-mode")) {
-                themeToggle.textContent = "☀️";
-            } else {
-                themeToggle.textContent = "🌙";
-            }
-        }
-    </script>
+    <!-- JavaScript Dosyası -->
+    <script src="scripts.js"></script>
 </body>
 </html>
